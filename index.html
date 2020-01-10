@@ -33,7 +33,9 @@
         var game = new Phaser.Game(config);
 
         //variable globale
-        let keys, velo, voitureRouge, voiture, pieton, eau1, eau2, layer, salut;
+        let keys, velo, voitureRouge, voiture, pieton, eau1, eau2, layer, salut,salut1,salut2,salut3,salut4,salut5;
+        let score = 0;
+        let scoreText;
 
         function preload()
         {
@@ -92,6 +94,8 @@
             // setter par défaut le velo comme non invincible
             velo.invincible = false;
 
+            scoreText = this.add.text(10,10, 'score: 0',{ fontSize: '40px', fill:'white'});
+
             /*creer un groupe de bouteille d'eau à collecter
             eaux = this.physics.add.group({
                 key: 'eau',
@@ -113,7 +117,7 @@
             //collider entre le velo et le layer1: habitation
             this.physics.add.collider(velo, layer);
 
-            //overlap entre le velo et les différentes eaux
+            //overlap entre le velo et les différentes eaux pour collecter
             //pas besoin de collider
             this.physics.add.overlap(velo, eau1, collectEaux, null, this);
 
@@ -127,11 +131,11 @@
             this.physics.add.overlap(velo, eau8, collectEaux, null, this);
 
             salut = this.add.text(20, 420, 'Salut toi!', { fontFamily: '"Roboto Condensed"' });
-            this.add.text(20, 440, 'Bienvenue en ville.', { fontFamily: '"Roboto Condensed"' });
-            this.add.text(20, 460, 'Collecte les eaux,', { fontFamily: '"Roboto Condensed"' });
-            this.add.text(20, 480, 'pour avoir des points.', { fontFamily: '"Roboto Condensed"' });
-            this.add.text(20, 500, 'Evite les autos.', { fontFamily: '"Roboto Condensed"' });
-            this.add.text(20, 520, 'Et vive le vélo!', { fontFamily: '"Roboto Condensed"' });
+            salut1 = this.add.text(20, 440, 'Bienvenue en ville.', { fontFamily: '"Roboto Condensed"' });
+            salut2 =this.add.text(20, 460, 'Collecte les eaux,', { fontFamily: '"Roboto Condensed"' });
+            salut3 =this.add.text(20, 480, 'pour avoir des points.', { fontFamily: '"Roboto Condensed"' });
+            salut4 =this.add.text(20, 500, 'Evite les autos.', { fontFamily: '"Roboto Condensed"' });
+            salut5 =this.add.text(20, 520, 'Et vive le vélo!', { fontFamily: '"Roboto Condensed"' });
         }
 
         function update()
@@ -141,6 +145,11 @@
             if(keys.left.isDown){
                 velo.setVelocityX(-110);
                 salut.setVisible(false);
+                salut1.setVisible(false);
+                salut2.setVisible(false);
+                salut3.setVisible(false);
+                salut4.setVisible(false);
+                salut5.setVisible(false);
             }
             else if(keys.right.isDown){
                 velo.setVelocityX(110);
