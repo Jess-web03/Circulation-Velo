@@ -33,9 +33,9 @@
         var game = new Phaser.Game(config);
 
         //variable globale
-        let keys, velo, voitureRouge, voiture, pieton, eau1, eau2, layer, salut,salut1,salut2,salut3,salut4,salut5;
-        let score = 0;
-        let scoreText;
+        let keys, velo, voitureRouge, voiture, pieton, eau1, eau2, layer, salut,salut1,salut2,salut3,salut4,salut5,score,scoreText;
+       
+       
 
         function preload()
         {
@@ -94,7 +94,8 @@
             // setter par défaut le velo comme non invincible
             velo.invincible = false;
 
-            scoreText = this.add.text(10,10, 'score: 0',{ fontSize: '40px', fill:'white'});
+            score = 0;
+            scoreText = this.add.text(10,10, `score : ${score}`,{ fontSize: '40px', fill:'white'});
 
             /*creer un groupe de bouteille d'eau à collecter
             eaux = this.physics.add.group({
@@ -223,30 +224,17 @@
             }
         }
 
-        function collectEaux(velo, eau1){
-            eau1.disableBody(true, true);
-        }
-        function collectEaux(velo, eau2){
-            eau2.disableBody(true, true);
-        }
-        function collectEaux(velo, eau3){
-            eau3.disableBody(true, true);
-        }
-        function collectEaux(velo, eau4){
-            eau4.disableBody(true, true);
-        }
-        function collectEauxParking(velo, eau5){
-            eau5.disableBody(true, true);
+        function collectEauxParking(velo, eau){
+            eau.disableBody(true, true);
+            score+=10;
+            scoreText.setText('Score :'+ score);
             alert('Génial, voici le parking des vélo. La sortie est de l\'autre côté, tu as le choix entre 3 issues.');
         }
-        function collectEaux(velo, eau6){
-            eau6.disableBody(true, true);
-        }
-        function collectEaux(velo, eau7){
-            eau7.disableBody(true, true);
-        }
-        function collectEaux(velo, eau8){
-            eau8.disableBody(true, true);
+        
+        function collectEaux(velo, eau){
+            eau.disableBody(true, true);
+            score+=10;
+            scoreText.setText('Score :'+ score); 
         }
     </script>
 </body>
